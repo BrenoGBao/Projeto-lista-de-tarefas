@@ -1,21 +1,19 @@
-//DECLARAÇÃO DE VARIAVEIS 
+// Declaração de variáveis
 let tarefa =[];
 
-//FUNÇÃO DE VALIDAÇÃO
-
+// Função de validação
 const validarCampo=()=>{
     let valida =false;
     if(document.getElementById("task").value == "") valida=true;
     return valida;
 }
 
-//FUNÇÃO ADICIONAR TAREFA
-
+// Função adicionar tarefa
 function adicionarTarefa(){
     let linha =document.getElementById("task")
 
     if(validarCampo()){
-        //alert("Preencha o campo Tarefa")
+        // alert("Preencha o campo Tarefa")
         Swal.fire({
             icon:"warning",
             title:"Atenção",
@@ -30,43 +28,42 @@ function adicionarTarefa(){
         listarTarefas();
         Swal.fire({
             icon:"success",
-            title:"Tarefa Adicionada com sucesso",
+            title:"Tarefa adicionado com sucesso",
             showConfirmButton:false,
-            timer:1500
+            timer:1500,
         })
     }
 }
 
-//FUNÇÃO LISTAR TAREFAS
-
+// Função listar tarefa
 function listarTarefas(){
     let valor="";
     for(let i =0; i < tarefa.length;i++){
-        valor += tarefa[i] + "<br>"; 
+        valor+= tarefa[i] + "<br>";
     }
     document.getElementById("lista").innerHTML =valor;
 }
 
-//FUNÇÃO REMOVER TAREFA
-
+// Função remover tarefa
 function removerTarefa(){
 
     Swal.fire({
         icon:"warning",
-        title:"Tem certeza que deseja Apagar ?",
-        text:"Essa tarefa será apagada",
+        title:"Tem certeza que deseja apagar?",
+        text:"Essa tarefa será APAGADA",
         showCancelButton:true,
-        confirmButtonColor:"#6B095BFF",
-        confirmButtonText:"Sim, Remover",
+        confirmButtonColor:"#6b095bff",
+        confirmButtonText:"Sim, apagar",
+        cancelButtonColor:"red",
         cancelButtonText:"Cancelar",
     }).then((result)=>{
         if(result.isConfirmed){
-            tarefa.pop();
+            tarefa.pop(); //Remove o último item adicionado
             listarTarefas();
             Swal.fire(
                 "Apagado",
                 "A tarefa foi removida da lista",
-                "success"
+                "success",
             )
         }
     })
